@@ -51,9 +51,7 @@ body {
 /* ======= DATA CONTAINERS ======= */
 .data-container,
 .data-paper-container {
-  width: 100%;
-  max-width: 100%;
-  min-width: 400px;
+  width: 95vw;
   height: auto;
   min-height: 500px;
   margin-bottom: 24px;

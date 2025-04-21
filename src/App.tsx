@@ -11,7 +11,9 @@ import {
 
 // Mock data - replace with your real data service later
 const useMockData = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<
+    { id: string; title: string; status: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,14 +48,16 @@ const useMockData = () => {
   return { data, loading };
 };
 
-function ProjectTable({ data }) {
+type Project = { id: string; title: string; status: string };
+
+function ProjectTable({ data }: { data: Project[] }) {
   if (!data.length)
     return (
       <Typography className="no-data-message">No projects available</Typography>
     );
 
   // Helper function to get the correct status badge class
-  const getStatusBadgeClass = (status) => {
+  const getStatusBadgeClass = (status: string): string => {
     const baseClass = "status-badge";
     // Convert status to lowercase and remove spaces for CSS class compatibility
     const formattedStatus = status.toLowerCase().replace(/\s+/g, "");
@@ -122,7 +126,7 @@ function App() {
       </Paper>
 
       <Grid container className="content-grid">
-        <Grid item xs={12}>
+        <Grid item={12}>
           {loading ? (
             <Box className="loading-container">
               <CircularProgress />
