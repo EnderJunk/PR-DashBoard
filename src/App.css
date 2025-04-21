@@ -1,42 +1,210 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* ======= BASE STYLES ======= */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #495f4a;
+}
+
+/* ======= LAYOUT CONTAINERS ======= */
+.main-container {
+  margin: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 16px !important;
+  box-sizing: border-box;
+}
+
+.content-grid {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ======= DASHBOARD HEADER ======= */
+.dashboard-header {
+  background-color: #d2e1d5;
+  padding: 24px 24px 24px 36px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.dashboard-title {
+  color: #2c3e2e;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+  color: #546856;
+  font-size: 1.1rem;
+}
+
+/* ======= DATA CONTAINERS ======= */
+.data-container,
+.data-paper-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: auto;
+  min-height: 500px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.data-paper-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======= TABLE STRUCTURE ======= */
+.data-table-wrapper {
+  height: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.data-table-header {
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.data-table .tr {
+  display: grid;
+  /* Modify the grid-template-columns to better use width */
+  grid-template-columns: minmax(120px, 15%) minmax(auto, 70%) minmax(120px, 15%);
+  width: 100% !important;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  align-items: center;
+}
+
+/* ======= TABLE CELLS ======= */
+.data-table .th,
+.data-table .td {
+  padding: 12px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ID column styling */
+.data-table .th:nth-child(1),
+.data-table .td:nth-child(1) {
+  font-weight: 500;
+}
+
+/* Status column styling - centered */
+.data-table .th:nth-child(3),
+.data-table .td:nth-child(3) {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* ======= TABLE ROWS ======= */
+.data-table-body .tr {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 50px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.data-table-body .tr:hover {
+  background-color: rgba(178, 197, 174, 0.9);
+  transform: translateY(-2px);
+}
+
+/* ======= STATUS BADGES ======= */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 0.9rem;
+  min-width: 80px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Status variations */
+.status-badge-active {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge-complete {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge-onhold {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+.status-badge-planning {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* Legacy status classes - keeping for backwards compatibility */
+.status-badge-open {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge-closed {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.status-badge-pending {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+.status-badge-reviewing {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* ======= UTILITY CLASSES ======= */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.no-data-message {
+  text-align: center;
+  padding: 24px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.data-refreshing {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.5;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  100% {
+    opacity: 1;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
