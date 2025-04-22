@@ -9,7 +9,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-// Mock data - replace with your real data service later
+// Mock data - replace with real data service later
 const useMockData = () => {
   const [data, setData] = useState<
     { id: string; title: string; status: string }[]
@@ -40,7 +40,7 @@ const useMockData = () => {
         };
         return updated;
       });
-    }, 3000);
+    }, 500);
 
     return () => clearInterval(interval);
   }, []);
@@ -48,16 +48,14 @@ const useMockData = () => {
   return { data, loading };
 };
 
-type Project = { id: string; title: string; status: string };
-
-function ProjectTable({ data }: { data: Project[] }) {
+function ProjectTable({ data }) {
   if (!data.length)
     return (
       <Typography className="no-data-message">No projects available</Typography>
     );
 
   // Helper function to get the correct status badge class
-  const getStatusBadgeClass = (status: string): string => {
+  const getStatusBadgeClass = (status) => {
     const baseClass = "status-badge";
     // Convert status to lowercase and remove spaces for CSS class compatibility
     const formattedStatus = status.toLowerCase().replace(/\s+/g, "");
@@ -88,7 +86,7 @@ function ProjectTable({ data }: { data: Project[] }) {
             </div>
           </div>
           <div className="data-table-body">
-            {data.map((project) => (
+            {data.map((project: Project) => (
               <div className="tr" key={project.id}>
                 <div className="td">{project.id}</div>
                 <div className="td">{project.title}</div>
@@ -118,7 +116,7 @@ function App() {
           className="dashboard-title"
           gutterBottom
         >
-          PR Project Dashboard
+          PowderRiver Rodeo Dashboard
         </Typography>
         <Typography className="dashboard-subtitle">
           Live Project Tracking System
@@ -126,7 +124,7 @@ function App() {
       </Paper>
 
       <Grid container className="content-grid">
-        <Grid item={12}>
+        <Grid item xs={12}>
           {loading ? (
             <Box className="loading-container">
               <CircularProgress />
